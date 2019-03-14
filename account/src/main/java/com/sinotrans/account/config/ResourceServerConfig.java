@@ -8,9 +8,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by SuperS on 2017/9/25.
- *
- * @author SuperS
+ * @author maxwell
  */
 @Configuration
 @EnableResourceServer

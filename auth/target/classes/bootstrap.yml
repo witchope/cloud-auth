@@ -1,0 +1,26 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+spring:
+  application:
+    name: auth-service
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://118.24.44.206:3306/authServer?allowMultiQueries=true&autoReconnect=true&characterEncoding=utf-8&useSSL=true
+    username: maxwell
+    password: 520806
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  redis:
+    database: 1
+    host: 14.215.45.89
+    password: ''
+    port: 6377
+    timeout: 10000
+server:
+  port: 5000

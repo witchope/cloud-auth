@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: cloud-gateway
+  security:
+    oauth2:
+      client:
+        registration:
+          login-client:
+            provider: uaa
+            client-id: login-client
+            client-secret: secret
+        provider:
+          uaa:
+            authorization-uri: http://localhost:${server.port}/uaa/oauth/authorize
+            token-uri: http://localhost:${server.port}/uaa/oauth/token
+            user-info-uri: http://localhost:${server.port}/uaa/user # user user info instead token info
+
+
+
+
+server:
+  port: 8099
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
