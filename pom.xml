@@ -17,6 +17,7 @@
         <module>account</module>
         <module>gateway</module>
         <module>auth</module>
+        <module>cloud-gateway</module>
     </modules>
 
 </project>
