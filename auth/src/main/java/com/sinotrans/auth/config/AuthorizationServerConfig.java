@@ -15,9 +15,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 /**
- * Created by SuperS on 2017/9/25.
- *
- * @author SuperS
+ * @author maxwell
  */
 @Configuration
 @EnableAuthorizationServer
@@ -36,11 +34,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return new RedisTokenStore(connectionFactory);
     }
 
+    /**
+     * 若无set jpaUserDetailsService ，refresh_token会有UserDetailsService is required错误
+     *
+     * @param endpoints
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
                 .authenticationManager(authenticationManager)
-                .userDetailsService(jpaUserDetailsService)//若无，refresh_token会有UserDetailsService is required错误
+                .userDetailsService(jpaUserDetailsService)
                 .tokenStore(tokenStore());
     }
 
@@ -55,13 +59,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("android")
-                .scopes("xx")
                 .secret(passwordEncoder.encode("android"))
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
+                .scopes("read", "write")
                 .and()
                 .withClient("webapp")
-                .scopes("xx")
                 .authorizedGrantTypes("implicit")
+                .scopes("all")
                 .and()
                 .withClient("browser")
                 .authorizedGrantTypes("refresh_token", "password")

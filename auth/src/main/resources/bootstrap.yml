@@ -19,8 +19,7 @@ spring:
   redis:
     database: 1
     host: 14.215.45.89
-    password: ''
-    port: 6377
+    port: 6379
     timeout: 10000
 server:
   port: 5000

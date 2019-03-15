@@ -33,4 +33,6 @@ security:
       prefer-token-info: false
 
 
-
+logging:
+  level:
+    org.springframework.cloud.netflix.zuul: trace
